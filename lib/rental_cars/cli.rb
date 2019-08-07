@@ -5,18 +5,22 @@ class RentalCars::Cli
     def call
         puts " Welcome to rental cars, This will help in renting Cars from Cincinnati"
         menu
-        puts "Goodbye"
+        puts "Goodbye, Have a good Day!"
     end
 
     def menu
         puts "Please put the pickup date MM/DD/YYYY or exit"
         input = nil 
-        
-        if input != "exit"
-            input = gets.strip.downcase
+        input = gets.strip.downcase
+        if (input != "exit" )
+           
+            
             pickupMonth = input.split("/")[0]
             pickupDay = input.split("/")[1]
             pickupYear = input.split("/")[2]
+ 
+           checkdate?(pickupYear + "/" + pickupMonth + "/" + pickupDay) if input != nil 
+
             if input != "exit"
                 puts "Please put the return date MM/DD/YYYY"
                 input = gets.strip.downcase
@@ -24,7 +28,8 @@ class RentalCars::Cli
                     returnMonth = input.split("/")[0]
                     returnDay= input.split("/")[1]
                     returnYear = input.split("/")[2]
-
+                   checkdate?(returnYear + "/" + returnMonth + "/" + returnDay) if input != nil 
+                   checkdropdate?(returnYear + "/" + returnMonth + "/" + returnDay, pickupYear + "/" + pickupMonth+ "/"+ pickupDay)if input != nil 
                     generateURL(pickupMonth,pickupDay,pickupYear,returnMonth,returnDay,returnYear)
                 end
             end
@@ -68,6 +73,23 @@ class RentalCars::Cli
                    input = gets.strip.downcase
                     carDetails(input)                    
                 end
+            end
+        end
+
+        def checkdate?(inputDate)
+            todayDate = Date.today
+        
+            if todayDate >= Date.parse(inputDate) 
+               puts "Date is not valid, please Enter correct date"
+               menu
+            end
+        end
+  
+        def checkdropdate?(inputDate, pickupdate)
+
+            if Date.parse(pickupdate) >= Date.parse(inputDate) 
+               puts "Date is not valid, please Enter correct date"
+               menu
             end
         end
 end
