@@ -22,7 +22,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1- User have to enter valid pick-up date. It cannot be today's date. 
+2- User have to enter valid drop-off date. It cannot be before pick-update.
+3- The gem will show the list of available cars in Cincinnati between that dates.
+4- User can select car to see more details about it.
 
 ## Development
 

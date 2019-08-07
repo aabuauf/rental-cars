@@ -13,7 +13,7 @@ class RentalCars::Cli
         input = nil 
         input = gets.strip.downcase
         if (input != "exit" )
-           
+           binding.pry
             
             pickupMonth = input.split("/")[0]
             pickupDay = input.split("/")[1]
@@ -80,7 +80,7 @@ class RentalCars::Cli
             todayDate = Date.today
         
             if todayDate >= Date.parse(inputDate) 
-               puts "Date is not valid, please Enter correct date"
+               puts "Date is not valid, please Enter correct date".red
                menu
             end
         end
@@ -88,7 +88,7 @@ class RentalCars::Cli
         def checkdropdate?(inputDate, pickupdate)
 
             if Date.parse(pickupdate) >= Date.parse(inputDate) 
-               puts "Date is not valid, please Enter correct date"
+               puts "Date is not valid, please Enter correct date".red
                menu
             end
         end
