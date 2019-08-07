@@ -1,0 +1,7 @@
+#! /usr/bin/env ruby
+
+
+require './lib/rental_cars'
+
+RentalCars::Cli.new.call
+
